@@ -82,8 +82,11 @@ function medidas (){
     if(la_ent<=la_veh && al_ent<=al_veh && an_ent<=an_veh){
     alert("La carga entra en el vehículo elegido")
     } else {
-    eleccionVehiculo ()
-    carga ()
+        let otroVehiculo = confirm("El volumen es insuficiente, ¿desea elegir otro vehículo?")
+        if (otroVehiculo == true) {
+            eleccionVehiculo ();
+            carga ();
+        }
 }
 }
 
