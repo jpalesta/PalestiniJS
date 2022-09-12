@@ -67,9 +67,8 @@ function eleccionFuncion() {
         entregas.push(new Entrega(this.id = (entregas.length + 1), this.zona = eleccionZona(), this.al = Number(prompt(`Ingrese la Altura en centímetros`)), this.an = Number(prompt(`Ingrese el Ancho en centímetros`)), this.la = Number(prompt(`Ingrese el Largo en centímetros`)),));
         eleccionFuncion()
     } else {
-        const volumenTotal = entregas.reduce((acc,el) => acc + el.volumen, 0)
-alert(`El volumen total de las entregas pendientes es de ${volumenTotal.toFixed(2)} M3`)
-
+        const volumenTotal = entregas.reduce((acc, el) => acc + el.volumen, 0)
+        alert(`El volumen total de las entregas pendientes es de ${volumenTotal.toFixed(2)} M3`)
     }
 }
 
@@ -79,5 +78,5 @@ function main() {
 
 main()
 
-
+/*Arranqué con algo más complejo pero lo dejé con lo que creo que alcanza para el desafío porque estoy muy corto de tiempo, para la primer pre entrega espero poder desarrollar lo que pensé  */
 
