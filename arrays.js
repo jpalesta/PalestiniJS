@@ -64,7 +64,15 @@ function eleccionFuncion() {
     eleccion = confirm(`¿Desea crear una nueva entrega?`);
 
     if (eleccion == true) {
-        entregas.push(new Entrega(this.id = (entregas.length + 1), this.zona = eleccionZona(), this.al = Number(prompt(`Ingrese la Altura en centímetros`)), this.an = Number(prompt(`Ingrese el Ancho en centímetros`)), this.la = Number(prompt(`Ingrese el Largo en centímetros`)),));
+        entregas.push(
+            new Entrega(
+                id = (entregas.length + 1),
+                zona = eleccionZona(),
+                al = Number(prompt(`Ingrese la Altura en centímetros`)),
+                an = Number(prompt(`Ingrese el Ancho en centímetros`)),
+                la = Number(prompt(`Ingrese el Largo en centímetros`)),
+            )
+        );
         eleccionFuncion()
     } else {
         const volumenTotal = entregas.reduce((acc, el) => acc + el.volumen, 0)
