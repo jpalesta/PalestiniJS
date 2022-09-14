@@ -42,7 +42,7 @@ let vehiculos = [
     new Vehiculo(1, "Renault", "Kangoo", 105, 115, 180),
     new Vehiculo(2, "Mercedes", "Sprinter", 175, 150, 330),
 ];
-//array vacío de hojas de ruta para que genere el id
+//array vacío de hojas de ruta para que genere el id y se vaya completando
 let hojasDeRuta = [];
 
 function elegirZona() {
