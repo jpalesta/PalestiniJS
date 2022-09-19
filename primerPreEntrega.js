@@ -78,11 +78,11 @@ function crearNuevaEntrega() {
 
     entregas.push(
         new Entrega(
-            (id = entregas.length + 1),
-            (zona = elegirZona()),
-            (al = altura),
-            (an = ancho),
-            (la = largo)
+            entregas.length + 1,
+            elegirZona(),
+            altura,
+            ancho,
+            largo
         )
     );
     alert("La entrega fue creada correctamente");
@@ -98,12 +98,12 @@ function crearNuevoVehiculo() {
 
     vehiculos.push(
         new Vehiculo(
-            (id = vehiculos.length + 1),
-            (marca = marca),
-            (modelo = modelo),
-            (al = altura),
-            (an = ancho),
-            (la = largo)
+            vehiculos.length + 1,
+            marca,
+            modelo,
+            altura,
+            ancho,
+            largo
         )
     );
     alert("El vehículo fue agregado con éxito");
@@ -134,7 +134,7 @@ function crearNuevaHojaDeRuta() {
 
     let vehiculoElegido = vehiculos.find((vehiculo) => vehiculo.id === vh);
 
-    let ocupacion = (volumenEntregasZona / vehiculoElegido.volumen)*100;
+    let ocupacion = (volumenEntregasZona / vehiculoElegido.volumen) * 100;
 
     hojasDeRuta.push(
         new HojaDeRuta(
@@ -157,8 +157,14 @@ function verEntregasPendientesPorZona() {
     const listadoEntregasPendientesPorZona = entregas.filter(
         (entrega) => entrega.zona == zona && entrega.pendiente === true
     );
-    console.log(entregas);
-    console.log(listadoEntregasPendientesPorZona);
+    //Este lo había puesto para estar seguro que me filtraba y me olvidé de sacarlo
+    //console.log(entregas);
+    let listado = ``
+    for (const ep of listadoEntregasPendientesPorZona) {
+        listado += `Entrega N°: ` + ep.id + ` Zona: ` + ep.zona + ` Volumen: ` + ep.volumen + `\n`
+    }
+    alert(listado)
+
     elegirFuncion();
 }
 
@@ -185,9 +191,10 @@ function elegirFuncion() {
     2. Ver entregas pendientes por zona.
     3. Crear hoja de ruta.
     4. Agregar un nuevo vehículo.
-    5. Ver listado de vehículos`);
+    5. Ver listado de vehículos
+    6. Salir`);
 
-    if (eleccion === null) {
+    if (eleccion === null || eleccion==6) {
         alert("En otra ocación");
     } else if (eleccion == 1) {
         crearNuevaEntrega();
