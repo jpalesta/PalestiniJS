@@ -86,7 +86,16 @@ function crearNuevaEntrega() {
         )
     );
     alert("La entrega fue creada correctamente");
-    elegirFuncion();
+
+    let nuevaFilaClon = nuevaFila.cloneNode(true)
+    section.appendChild(nuevaFilaClon)
+    nuevaFilaClon.children[0].innerText = entregas.length
+    nuevaFilaClon.children[1].innerText = zona
+    nuevaFilaClon.children[2].innerText = altura
+    nuevaFilaClon.children[3].innerText = ancho
+    nuevaFilaClon.children[4].innerText = largo
+    nuevaFilaClon.children[5].innerText = (altura * ancho * largo) / 1000000
+
 }
 
 function crearNuevoVehiculo() {
@@ -158,14 +167,14 @@ function verEntregasPendientesPorZona() {
         (entrega) => entrega.zona == zona && entrega.pendiente === true
     );
     //Este lo había puesto para estar seguro que me filtraba y me olvidé de sacarlo
-    //console.log(entregas);
+    console.log(listadoEntregasPendientesPorZona);
     let listado = ``
     for (const ep of listadoEntregasPendientesPorZona) {
         listado += `Entrega N°: ` + ep.id + ` Zona: ` + ep.zona + ` Volumen: ` + ep.volumen + `\n`
     }
     alert(listado)
 
-    elegirFuncion();
+    // elegirFuncion();
 }
 
 //ídem entregasPendientes
@@ -181,11 +190,28 @@ function verListadoDeVehiculos() {
     });
     console.log(listadoDeVehiculos);
 
-    elegirFuncion();
+    // elegirFuncion();
 }
 
-//función para elegir que acción se va a realizar
-function elegirFuncion() {
+let section = document.getElementById("filas");
+let temp = document.querySelector("template");
+let nuevaFila = temp.content.querySelector("tr");
+
+function mostrarEntregas() {
+    entregas.forEach((entrega) => {
+        let nuevaFilaClon = nuevaFila.cloneNode(true)
+        section.appendChild(nuevaFilaClon)
+        nuevaFilaClon.children[0].innerText = entrega.id
+        nuevaFilaClon.children[1].innerText = entrega.zona
+        nuevaFilaClon.children[2].innerText = entrega.al
+        nuevaFilaClon.children[3].innerText = entrega.an
+        nuevaFilaClon.children[4].innerText = entrega.la
+        nuevaFilaClon.children[5].innerText = entrega.volumen
+    })
+}
+
+const boton = document.getElementById("botonFunciones");
+boton.onclick = function () {
     eleccion = prompt(`Por favor indique la acción a realizar
     1. Crear nueva entrega.
     2. Ver entregas pendientes por zona.
@@ -194,7 +220,7 @@ function elegirFuncion() {
     5. Ver listado de vehículos
     6. Salir`);
 
-    if (eleccion === null || eleccion==6) {
+    if (eleccion === null || eleccion == 6) {
         alert("En otra ocación");
     } else if (eleccion == 1) {
         crearNuevaEntrega();
@@ -210,11 +236,11 @@ function elegirFuncion() {
         alert("Opción no válida");
         elegirFuncion();
     }
-}
+};
 
 //función general
 function main() {
-    elegirFuncion();
+    mostrarEntregas()
 }
 
 main();
